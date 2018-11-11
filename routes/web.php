@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/product/',function(){
+    return view('admin.index');
+});
+Route::group(['prefix'=>'product','as'=>'product.'], function(){
+    Route::get('/', ['as' => 'index', 'uses' => 'AccountController@index']);
+    Route::get('product', function(){ return view('admin.product'); });
+});
