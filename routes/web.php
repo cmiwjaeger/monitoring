@@ -23,6 +23,6 @@ Route::get('/product/',function(){
     return view('admin.index');
 });
 Route::group(['prefix'=>'product','as'=>'product.'], function(){
-    Route::get('/', ['as' => 'index', 'uses' => 'AccountController@index']);
+    Route::get('/', ['as' => 'index', function(){ return view('admin.index'); }]);
     Route::get('product', function(){ return view('admin.product'); });
 });

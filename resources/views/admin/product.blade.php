@@ -1,5 +1,4 @@
 @extends('layouts.app');
-
 @section('content')
-sadfdafsudfus
+Form::open(array('action' => 'Controller@method'))
 @endsection
