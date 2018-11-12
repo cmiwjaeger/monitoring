@@ -1,0 +1,29 @@
+[33mcommit 9a7304eb3c3c4fb5b5895c126601d108acf8ccdd[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: mirfmaster <mirfmaster@gmail.com>
+Date:   Sun Nov 11 23:51:59 2018 +0700
+
+    Production Stage
+
+[33mcommit 3ec527d51440034fe4a6f05528ebb9abb44f3557[m
+Author: mirfmaster <mirfmaster@gmail.com>
+Date:   Sun Nov 11 15:04:45 2018 +0700
+
+    productController
+
+[33mcommit 4b29d1c0b0356f076acbc35cab5c46e0f218a429[m
+Author: mirfmaster <mirfmaster@gmail.com>
+Date:   Sun Nov 11 13:31:33 2018 +0700
+
+    make:auth
+
+[33mcommit 3506f389915f8a6ea43ec598e083280a6b59db9c[m
+Author: mirfmaster <mirfmaster@gmail.com>
+Date:   Sun Nov 11 11:47:38 2018 +0700
+
+    install adminLTE
+
+[33mcommit 2283b0a42538b4b078b24aebefbff8caeb15616d[m
+Author: mirfmaster <mirfmaster@gmail.com>
+Date:   Sat Nov 10 23:34:53 2018 +0700
+
+    PreparedInstall
