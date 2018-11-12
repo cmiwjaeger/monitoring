@@ -17,10 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::resource('product','ProductController');
+Route::resource('user','UserController');
 
-// Route::get('product','ProductController@index')->name('production');
+Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/profile',function () {
+//     return view('admin.profile');
+// })->name('userprofile');
 // Route::get('store','ProductController@store')->name('/create');
 
