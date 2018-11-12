@@ -11,10 +11,10 @@
     <input type="text" class="form-control" name="value">
   </div>
   @csrf
-  <div style="margin-left:500px;">
+  <center>
     <button type="submit" class="btn btn-primary">Submit</button>
     <button type="reset" class="btn btn-info">Reset</button>
-  </div>
+    </center>
 </form>
 
 </div>

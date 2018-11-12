@@ -79,8 +79,8 @@ class ProductController extends Controller
      */
     public function edit(product $product)
     {
-        $product = Product::where('idproduct', $idproduct)->get();
-        return view('product.edit', compact('product'));
+        $product = Product::where('idproduct', $product->idproduct)->get();
+        return view('admin.edit', compact('product'));
     }
 
     /**
@@ -92,7 +92,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, product $product)
     {
-        $product = Siswa::where('idproduct', $idproduct)->first();
+        $product = Product::where('idproduct', $product->idproduct)->first();
         $product->nameproduct = $request->nameproduct;
         $product->value = $request->value;
         $product->save();
@@ -107,6 +107,8 @@ class ProductController extends Controller
      */
     public function destroy(product $product)
     {
-        //
+        $product=product::where('idproduct',$product->idproduct)->firstOrFail();
+        $product->delete();
+        return redirect()->route('product.index');
     }
 }

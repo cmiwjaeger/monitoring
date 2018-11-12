@@ -8,7 +8,7 @@
       <th scope="col">ID</th>
       <th scope="col">Product Name</th>
       <th scope="col">Value</th>
-      <th colspan="2"><center>Handler</center></th>
+      <th scope="col"><center>Handler</center></th>
     </tr>
   </thead>
   <tbody>
@@ -19,14 +19,14 @@
       <td>{{$product['value']}}</td>
       <!--  action('PassportController@destroy', $product['id']) -->
       <td>
-        <a href="{{ action('ProductController@edit', $product->idproduct) }}" class="btn btn-warning">Edit</a>
-      </td>
-      <td>
-          <form action="product.destroy" method="post">
+      <center>
+          <form action="{{ action('ProductController@destroy', $product->idproduct) }}" method="post">
+            <a href="{{ action('ProductController@edit', $product->idproduct) }}" class="btn btn-warning">Edit</a>
             @csrf
             <input name="_method" type="hidden" value="DELETE">
             <button class="btn btn-danger" type="submit">Delete</button>
           </form>
+      </center>
         </td>
     </tr>
   @endforeach
