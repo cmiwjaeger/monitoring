@@ -19,7 +19,7 @@
       <td>{{$product['value']}}</td>
       <!--  action('PassportController@destroy', $product['id']) -->
       <td>
-        <a href="{{ action('ProductController@edit', $product->idproduct }}" class="btn btn-warning">Edit</a>
+        <a href="{{ action('ProductController@edit', $product->idproduct) }}" class="btn btn-warning">Edit</a>
       </td>
       <td>
           <form action="product.destroy" method="post">
