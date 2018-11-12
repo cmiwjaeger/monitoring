@@ -15,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.product');
+        $products=\App\Product::all();
+        return view('admin.product',compact('products'));
     }
 
     /**
@@ -25,7 +26,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $products=\App\Product::all();
+        return view('admin.product')
+        ->with('products',$products);
     }
 
     /**
@@ -36,7 +39,25 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->hasfile('filename'))
+         {
+            $file = $request->file('filename');
+            $name=time().$file->getClientOriginalName();
+            $file->move(public_path().'/images/', $name);
+         }
+        $product= new \App\Product;
+        $product->nameproduct=$request->get('nameproduct');
+        $product->value=$request->get('value');
+        // $product->number=$request->get('number');
+        // $date=date_create($request->get('date'));
+        // $format = date_format($date,"Y-m-d");
+        // $product->date = strtotime($format);
+        // $product->office=$request->get('office');
+        // $product->filename=$name;
+        $product->save();
+        
+        return redirect('product')->with('success', 'Information has been added');
+
     }
 
     /**

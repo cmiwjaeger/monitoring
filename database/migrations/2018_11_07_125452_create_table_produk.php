@@ -17,6 +17,7 @@ class CreateTableProduk extends Migration
             $table->increments('idproduct');
             $table->string('nameproduct',60);
             $table->string('value');
+            $table->timestamps();
         });
     }
 
