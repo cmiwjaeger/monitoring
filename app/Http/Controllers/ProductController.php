@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         $products=\App\Product::all();
-        return view('admin.product',compact('products'));
+        return view('admin.index',compact('products'));
     }
 
     /**
@@ -79,7 +79,8 @@ class ProductController extends Controller
      */
     public function edit(product $product)
     {
-        //
+        $product = Product::where('idproduct', $idproduct)->get();
+        return view('product.edit', compact('product'));
     }
 
     /**
@@ -91,7 +92,11 @@ class ProductController extends Controller
      */
     public function update(Request $request, product $product)
     {
-        //
+        $product = Siswa::where('idproduct', $idproduct)->first();
+        $product->nameproduct = $request->nameproduct;
+        $product->value = $request->value;
+        $product->save();
+        return redirect()->route('product.index')->with('alert-success', 'Data berhasil diubah!');
     }
 
     /**
