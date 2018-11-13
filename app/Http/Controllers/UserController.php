@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Hash;
 
 class UserController extends Controller
 {
@@ -70,8 +71,57 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $user = User::where('id', $user->id)->first();
+        $user->name = $request->name;
+        $user->save();
+        return redirect()->route('user.edit',$user->id);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(User $user)
+    {
         //
     }
+
+    public function password(Request $request)
+    {
+        $user = User::where('id', $request->id)->first();
+        return view('admin.password', compact('user'));
+    }
+
+    public function avatar()
+    {
+        return view('admin.avatar');
+    }
+
+    public function changePassword(Request $request)
+{
+    $user = new User;
+    $oldPassword = $request->old;
+    $newPassword = $request->new;
+    $confPassword = Hash::make($request->confirmation);
+    if(Hash::check($oldPassword,$newPassword)){
+        if (Hash::check($curPassword, $newPassword)) {
+            $obj_user = User::find($user_id)->first();
+            $obj_user->password = $confPassword;
+            $obj_user->save();
+
+            return redirect()->back()->with("success","Password changed successfully !");
+        }
+        else
+        {
+            redirect()->back()->with("error","Your new password is mismatch. Please try again.");
+        }
+    } else {
+        return redirect()->back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
+    }
+        
+}
 
     public function updateAvatar(Request $request)
     {
@@ -90,18 +140,7 @@ class UserController extends Controller
             // $this->save();
             $user=new User;
 	        $user->where('email', '=', Auth::user()->email)->update(['avatar' => 'users/'.$avatar]);
-	        return Redirect::to('user_profile');
+	        return Redirect::to('user_profile')->with(true);
         }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
     }
 }

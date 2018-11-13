@@ -96,7 +96,7 @@ class ProductController extends Controller
         $product->nameproduct = $request->nameproduct;
         $product->value = $request->value;
         $product->save();
-        return redirect()->route('product.index')->with('alert-success', 'Data berhasil diubah!');
+        return redirect()->route('user.index')->with('alert-success', 'Data berhasil diubah!');
     }
 
     /**
