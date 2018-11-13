@@ -81,10 +81,15 @@
         </nav>
 
         <main class="py-4">
-        @if(Session::has('msg'))
+        @if(Session::has('errMsg'))
+            <div class="alert alert-danger">
+                <a class="close" data-dismiss="alert">×</a>
+                <strong>Heads Up!</strong> {!!Session::get('errMsg')!!}
+            </div>
+        @elseif(Session::has('sucMsg'))
             <div class="alert alert-info">
                 <a class="close" data-dismiss="alert">×</a>
-                <strong>Heads Up!</strong> {!!Session::get('msg')!!}
+                <strong>Congratulations!</strong> {!!Session::get('sucMsg')!!}
             </div>
         @endif
             @yield('content')
