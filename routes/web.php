@@ -17,15 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::resource('product','ProductController');
-Route::resource('user','UserController');
+Route::resource('product','ProductController')->middleware('auth');
+Route::resource('user','UserController')->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/Privileges/{id}','UserController@password')->name('password');
-Route::patch('/Privileges/password/{id}','UserController@changePassword')->name('changepassword');
-Route::get('/Privileges/avatar/{id}','UserController@avatar')->name('avatar');
-// Route::get('/profile',function () {
-//     return view('admin.profile');
-// })->name('userprofile');
-// Route::get('store','ProductController@store')->name('/create');
+Route::get('/Privileges/{id}','UserController@password')->name('password')->middleware('auth');
+Route::patch('/Privileges/password/{id}','UserController@changePassword')->name('changepassword')->middleware('auth');
+Route::get('/Privileges/avatar/{id}','UserController@avatar')->name('avatar')->middleware('auth');
 

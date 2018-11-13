@@ -8,7 +8,7 @@
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Product Name</th>
-      <th scope="col">Value</th>
+      <th scope="col">Supplier Name</th>
       <th scope="col"><center>Handler</center></th>
     </tr>
   </thead>
@@ -17,8 +17,7 @@
     <tr>
       <th>{{$product['idproduct']}}</th>
       <th>{{$product['nameproduct']}}</th>
-      <td>{{$product['value']}}</td>
-      <!--  action('PassportController@destroy', $product['id']) -->
+      <td>{{$product['namesupplier']}}</td>
       <td>
       <center>
           <form action="{{ action('ProductController@destroy', $product->idproduct) }}" method="post">

@@ -20,7 +20,7 @@
         </form>
         <br><br>
         <a href="{{route('password',$user->id)}}" class="btn btn-danger">Change Password</a>
-        <a href="{{route('avatar',Auth::id())}}" class="btn btn-info">Change Avatar</a>
+        <a href="{{route('avatar',$user->id)}}" class="btn btn-info">Change Avatar</a>
             </center>
         
     @endforeach

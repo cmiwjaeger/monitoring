@@ -8,5 +8,5 @@ class product extends Model
 {
     protected $primaryKey = 'idproduct';
     protected $table ='products';
-    public $timestamps=false;
+    protected $fillable = ['nameproduct','namesupplier'];
 }
