@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Hash;
+use Session;
+use Auth;
 
 class UserController extends Controller
 {
@@ -101,26 +103,29 @@ class UserController extends Controller
 
     public function changePassword(Request $request)
 {
-    $user = new User;
-    $oldPassword = $request->old;
-    $newPassword = $request->new;
-    $confPassword = Hash::make($request->confirmation);
-    if(Hash::check($oldPassword,$newPassword)){
-        if (Hash::check($curPassword, $newPassword)) {
-            $obj_user = User::find($user_id)->first();
-            $obj_user->password = $confPassword;
-            $obj_user->save();
 
-            return redirect()->back()->with("success","Password changed successfully !");
+    $user = new User;
+    $newHash=Hash::make($request->new);
+    $userId=Auth::user()->id;
+    $userPassword=Auth::user()->password;
+    if(Hash::check($request->old,$userPassword)){
+        if(!Hash::check($request->new,$userPassword)){
+            if ($request->new==$request->confirmation) {
+                $obj_user = User::find($userId)->firstOrFail();
+                $obj_user->password = Hash::make($request->new);
+                $obj_user->save();
+                return redirect()->back()->with("success","Password changed successfully !");
+            }
+            else
+            {
+                redirect()->route('home')->with("error","Your new password is mismatch. Please try again.");
+            }
+        } else {
+            return redirect()->back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
         }
-        else
-        {
-            redirect()->back()->with("error","Your new password is mismatch. Please try again.");
-        }
-    } else {
-        return redirect()->back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
+    } else{
+        return redirect()->back()->with("error","Your password is wrong");
     }
-        
 }
 
     public function updateAvatar(Request $request)

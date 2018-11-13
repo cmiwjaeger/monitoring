@@ -81,6 +81,12 @@
         </nav>
 
         <main class="py-4">
+        @if(Session::has('msg'))
+            <div class="alert alert-info">
+                <a class="close" data-dismiss="alert">×</a>
+                <strong>Heads Up!</strong> {!!Session::get('msg')!!}
+            </div>
+        @endif
             @yield('content')
         </main>
     </div>

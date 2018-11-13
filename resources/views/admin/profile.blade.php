@@ -17,7 +17,8 @@
             </div>
             <center>
             <button type="submit" class="btn btn-primary">Change</button>
-        </form><br><br>
+        </form>
+        <br><br>
         <a href="{{route('password',$user->id)}}" class="btn btn-danger">Change Password</a>
         <a href="{{route('avatar',Auth::id())}}" class="btn btn-info">Change Avatar</a>
             </center>
