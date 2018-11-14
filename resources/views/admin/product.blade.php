@@ -1,4 +1,4 @@
-@extends('layouts.app');
+@extends('layouts.app')
 @section('content')
 
 <form action="{{route('product.store')}}" method="POST" style="width:50%;margin-left:25%">
@@ -9,6 +9,10 @@
   <div class="form-group">
     <label>Supplier Name</label>
     <input type="text" class="form-control" name="namesupplier">
+  </div>
+  <div class="form-group">
+    <label>Quantity</label>
+    <input type="number" class="form-control" name="quantity">
   </div>
   @csrf
   <center>

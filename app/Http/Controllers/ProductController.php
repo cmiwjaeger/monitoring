@@ -27,8 +27,7 @@ class ProductController extends Controller
     public function create()
     {
         $products=\App\Product::all();
-        return view('admin.product')
-        ->with('products',$products);
+        return view('admin.product')->with('products',$products);
     }
 
     /**
@@ -39,16 +38,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->hasfile('filename'))
-         {
-            $file = $request->file('filename');
-            $name=time().$file->getClientOriginalName();
-            $file->move(public_path().'/images/', $name);
-         }
         $product = Product::create(request()->all());
-        
-        return redirect('product')->with('success', 'Information has been added');
-
+        return redirect('product')->with('sucMsg', 'Information has been added');
     }
 
     /**

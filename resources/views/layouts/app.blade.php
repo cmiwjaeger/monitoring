@@ -43,6 +43,9 @@
                                 <a class="dropdown-item" href="{{ route('product.index') }}">
                                     Production
                                 </a>
+                                <a class="dropdown-item" href="{{ route('product.index') }}">
+                                    Valued Items
+                                </a>
                         </li>
                     </ul>
                     @endif
@@ -65,7 +68,7 @@
                         @if($avatar==NULL)
                             <img class="avatar" src="{{asset('avatars/no-profile.png')}}" alt="" style="width:40px;height:40px;">
                         @else
-                            <img class="avatar" src="{{asset('avatars/'.$users->email.'/'.$users->avatar)}}" alt="" style="width:40px;height:40px;">
+                            <img class="avatar" src="{{asset('avatars/'.auth()->user()->email.'/'.$avatar)}}" alt="" style="width:40px;height:40px;transform:rotate(90deg);">
                         @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -75,9 +78,6 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('user.edit',Auth::id()) }}">
                                        Profile
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('product.index') }}">
-                                       Production
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

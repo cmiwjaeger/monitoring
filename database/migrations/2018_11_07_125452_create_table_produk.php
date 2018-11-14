@@ -17,6 +17,8 @@ class CreateTableProduk extends Migration
             $table->increments('idproduct');
             $table->string('nameproduct',60);
             $table->string('namesupplier');
+            $table->integer('quantity');
+            $table->integer('value')->nullable();
             $table->timestamps();
         });
     }
