@@ -96,15 +96,14 @@ class UserController extends Controller
         return view('admin.password', compact('user'));
     }
 
-    public function avatar()
+    public function avatar(Request $request)
     {
-        return view('admin.avatar');
+        $user = User::where('id', $request->id)->first();
+        return view('admin.avatar', compact('user'));
     }
 
     public function changePassword(Request $request)
     {
-
-        $user = new User;
         $newHash=Hash::make($request->new);
         $userId=Auth::user()->id;
         $userPassword=Auth::user()->password;
@@ -131,21 +130,28 @@ class UserController extends Controller
     public function updateAvatar(Request $request)
     {
         $this->validate($request, [
-            'input_img' => 'required|image|mimes:jpeg,png,jpg,|max:10000',
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,|max:10000',
         ]);
         if ($request->hasFile('avatar')) {
+            $user=new User;
             $image = $request->file('avatar');
             $avatar = time().'.'.$image->getClientOriginalExtension();
-            $target_dir = public_path('/avatars/'.$request->name);
-
+            $email=Auth::user()->email;
+            $target_dir = public_path('/avatars/'.$email);
+            
             if (!is_dir($target_dir)) {
                 mkdir($target_dir, 0777, true);
             }
             $image->move($target_dir, $avatar);
-            // $this->save();
-            $user=new User;
-	        $user->where('email', '=', Auth::user()->email)->update(['avatar' => 'users/'.$avatar]);
-	        return Redirect::to('user_profile')->with(true);
+	        $user->where('email', '=', $email)->update(['avatar' => $avatar]);
+	        return redirect()->back()->with("sucMsg","Changes successfully!");
         }
+    }
+
+    public function removeAvatar()
+    {
+        // $user=new User;
+        // $user->where('id', '=', $request->id)->update(['avatar' => NULL]);
+        // return redirect()->back()->with("sucMsg","Changes successfully!");
     }
 }
