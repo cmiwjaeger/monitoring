@@ -6,7 +6,7 @@
         @if($user->avatar==NULL)
             <img class="card-img-top" src="{{asset('avatars/no-profile.png')}}" alt="">
         @else
-            <img class="card-img-top" src="{{asset('avatars/'.$user->email.'/'.$user->avatar)}}" alt="">
+            <img class="card-img-top" src="{{asset('avatars/'.$user->email.'/'.$user->avatar)}}" alt="" style="width:100%;height:300px;">
         @endif
         <div class="card-body">
             <h5 class="card-title"><center>{{Auth::user()->name}}</center></h5>
