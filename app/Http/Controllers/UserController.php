@@ -61,7 +61,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $users = User::where('id', $user->id)->get();
-        return view('admin.profile', compact('users'));
+        return view('admin.Priviledges.profile', compact('users'));
     }
 
     /**
@@ -93,13 +93,13 @@ class UserController extends Controller
     public function password(Request $request)
     {
         $user = User::where('id', $request->id)->first();
-        return view('admin.password', compact('user'));
+        return view('admin.Priviledges.password', compact('user'));
     }
 
     public function avatar(Request $request)
     {
         $user = User::where('id', $request->id)->first();
-        return view('admin.avatar', compact('user'));
+        return view('admin.Priviledges.avatar', compact('user'));
     }
 
     public function changePassword(Request $request)
@@ -148,10 +148,17 @@ class UserController extends Controller
         }
     }
 
-    public function removeAvatar()
+    public function removeAvatar(request $request)
     {
-        // $user=new User;
-        // $user->where('id', '=', $request->id)->update(['avatar' => NULL]);
-        // return redirect()->back()->with("sucMsg","Changes successfully!");
+        $user = User::where('id', $request->id)->first();
+        $file= public_path("avatars/".$user->email."/".$user->avatar);
+        if(unlink($file)){
+            $user->avatar=NULL;
+            $user->save();
+            return redirect()->back()->with("sucMsg","Avatar deleted!");
+        } else {
+            return redirect()->back()->with("errMsg","Cant delete file, please contact administrator");
+        }
+        
     }
 }

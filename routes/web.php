@@ -25,6 +25,6 @@ Route::resource('user','UserController')->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/Privileges/{id}','UserController@password')->name('password')->middleware('auth');
 Route::patch('/Privileges/password/{id}','UserController@changePassword')->name('changepassword')->middleware('auth');
-Route::delete('/Privileges/remove/{id}','UserController@removeAvatar')->name('removeAvatar')->middleware('auth');
+Route::get('/Privileges/remove/{id}','UserController@removeAvatar')->name('removeAvatar')->middleware('auth');
 Route::patch('/Privileges/avatar/{id}','UserController@updateAvatar')->name('changeavatar')->middleware('auth');
 Route::get('/Privileges/avatar/{id}','UserController@avatar')->name('avatar')->middleware('auth');

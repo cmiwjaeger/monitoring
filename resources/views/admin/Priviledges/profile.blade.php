@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('title','Profile Page')
-@section('description','Please Update Your Avatar')
 @section('content')
     @foreach($users as $user)
         <form action="{{ route('user.update', $user->id) }}" method="post" style="width:50%;margin-left:25%">

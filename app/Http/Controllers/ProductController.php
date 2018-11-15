@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products=Product::where('value',NULL)->get();
+        $products=Product::where('value',NULL)->take(5)->get();
         return view('admin.index',compact('products'));
     }
 
@@ -27,7 +27,7 @@ class ProductController extends Controller
     public function create()
     {
         $products=Product::all();
-        return view('admin.product')->with('products',$products);
+        return view('admin.Product.product')->with('products',$products);
     }
 
     /**
@@ -39,7 +39,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = Product::create(request()->all());
-        return redirect('product')->with('sucMsg', 'Information has been added');
+        return redirect('Product.product')->with('sucMsg', 'Information has been added');
     }
 
     /**
@@ -51,7 +51,7 @@ class ProductController extends Controller
     public function showvalue(product $product,request $request)
     {
         $product = Product::where('idproduct', $request->idproduct)->first();
-        return view('admin.value', compact('product'));
+        return view('admin.Product.value', compact('product'));
     }
 
     /**
@@ -63,7 +63,7 @@ class ProductController extends Controller
     public function edit(product $product)
     {
         $product = Product::where('idproduct', $product->idproduct)->get();
-        return view('admin.edit', compact('product'));
+        return view('admin.Product.edit', compact('product'));
     }
 
     /**

@@ -22,14 +22,13 @@
       <td class="text-center">{{$product['quantity']}}</td>
       <td>
       <center>
-          <form action="{{ action('ProductController@showvalue', $product->idproduct) }}" method="post">
+          <form action="{{ action('ProductController@showvalue', $product->idproduct) }}" method="post" style="margin-bottom:5px;">
             @csrf
             <input name="_method" type="hidden" value="PATCH">
             <input name="idproduct" type="hidden" value="{{$product->idproduct}}">
             <button class="btn btn-primary" type="submit">Value</button>
+            <a href="{{ action('ProductController@edit', $product->idproduct) }}" class="btn btn-warning">Edit</a>
           </form>
-
-          <a href="{{ action('ProductController@edit', $product->idproduct) }}" class="btn btn-warning">Edit</a>
           
           <form action="{{ action('ProductController@destroy', $product->idproduct) }}" method="post">
             @csrf
