@@ -28,3 +28,5 @@ Route::patch('/Privileges/password/{id}','UserController@changePassword')->name(
 Route::get('/Privileges/remove/{id}','UserController@removeAvatar')->name('removeAvatar')->middleware('auth');
 Route::patch('/Privileges/avatar/{id}','UserController@updateAvatar')->name('changeavatar')->middleware('auth');
 Route::get('/Privileges/avatar/{id}','UserController@avatar')->name('avatar')->middleware('auth');
+
+Route::get('/reports','ReportsController@index')->middleware('auth');

@@ -43,7 +43,7 @@
                                 <a class="dropdown-item" href="{{ route('product.index') }}">
                                     Production
                                 </a>
-                                <a class="dropdown-item" href="{{ route('product.index') }}">
+                                <a class="dropdown-item" href="{{ url('/reports') }}">
                                     Reports
                                 </a>
                         </li>

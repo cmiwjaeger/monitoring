@@ -70,6 +70,7 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                         <a href="{{ url('/product') }}">Product</a>
+                        <a href="{{ route('user.edit',Auth::id()) }}">Profile</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
