@@ -44,7 +44,7 @@
                                     Production
                                 </a>
                                 <a class="dropdown-item" href="{{ route('product.index') }}">
-                                    Valued Items
+                                    Reports
                                 </a>
                         </li>
                     </ul>

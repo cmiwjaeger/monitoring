@@ -18,11 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::resource('product','ProductController')->middleware('auth');
+Route::patch('/product/{id}/value','ProductController@showvalue')->name('value')->middleware('auth'); 
+Route::patch('/product/{id}/give','ProductController@updatevalue')->name('updatevalue')->middleware('auth'); 
 Route::resource('user','UserController')->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/Privileges/{id}','UserController@password')->name('password')->middleware('auth');
 Route::patch('/Privileges/password/{id}','UserController@changePassword')->name('changepassword')->middleware('auth');
-Route::patch('/Privileges/remove/{id}','UserController@removeAvatar')->name('removeAvatar')->middleware('auth');
+Route::delete('/Privileges/remove/{id}','UserController@removeAvatar')->name('removeAvatar')->middleware('auth');
 Route::patch('/Privileges/avatar/{id}','UserController@updateAvatar')->name('changeavatar')->middleware('auth');
 Route::get('/Privileges/avatar/{id}','UserController@avatar')->name('avatar')->middleware('auth');

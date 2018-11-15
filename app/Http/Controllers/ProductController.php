@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products=\App\Product::all();
+        $products=Product::where('value',NULL)->get();
         return view('admin.index',compact('products'));
     }
 
@@ -26,7 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $products=\App\Product::all();
+        $products=Product::all();
         return view('admin.product')->with('products',$products);
     }
 
@@ -48,9 +48,10 @@ class ProductController extends Controller
      * @param  \App\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(product $product)
+    public function showvalue(product $product,request $request)
     {
-        //
+        $product = Product::where('idproduct', $request->idproduct)->first();
+        return view('admin.value', compact('product'));
     }
 
     /**
@@ -77,8 +78,17 @@ class ProductController extends Controller
         $product = Product::where('idproduct', $product->idproduct)->first();
         $product->nameproduct = $request->nameproduct;
         $product->namesupplier = $request->namesupplier;
+        $product->quantity = $request->quantity;
         $product->save();
-        return redirect()->route('user.index')->with('alert-success', 'Data berhasil diubah!');
+        return redirect()->route('product.index')->with('sucMsg', 'Data berhasil diubah!');
+    }
+
+    public function updatevalue(Request $request, product $product)
+    {
+        $product = Product::where('idproduct', $request->idproduct)->first();
+        $product->value = $request->quality;
+        $product->save();
+        return redirect()->route('product.index')->with('sucMsg', 'Value berhasil ditambahkan, data akan masuk reports!');
     }
 
     /**
