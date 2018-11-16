@@ -1,8 +1,23 @@
 @extends('layouts.app')
+@section('title','Reports')
 @section('content')
 <div class="container">
+<form action="{{url('/reports')}}">
+  <div class="input-group mb-2 w-25 ml-auto">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="inputGroupSelect01">Filter</label>
+    </div>
+    <select class="custom-select" id="inputGroupSelect01">
+      <option selected>Choose...</option>
+      <option value="no-filter">No-Filter</option>
+      <option value="good">Good</option>
+      <option value="reject">Reject</option>
+    </select>
+  <button class="btn btn-danger" type="submit">Delete</button>
+  </div>
+</form>
 
-<table class="table ml-auto mr-auto" style="width:80%;">
+<table class="table ml-auto mr-auto">
   <thead class="thead-dark text-center">
     <tr>
       <th scope="col">ID</th>

@@ -12,9 +12,15 @@ class ReportsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products=Product::whereNotNull('value')->take(5)->get();
+        if($request->filter=="good"){
+            $products=Product::where('value','>=',70)->take(5)->get();
+        }elseif($request->filter=="reject"){
+            $products=Product::where('value','<',70)->take(5)->get();
+        }else{
+            $products=Product::whereNotNull('value')->take(5)->get();
+        }
         return view('admin.reports.index',compact('products'));
     }
 
