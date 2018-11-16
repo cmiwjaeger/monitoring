@@ -107,17 +107,18 @@ class UserController extends Controller
         $newHash=Hash::make($request->new);
         $userId=Auth::user()->id;
         $userPassword=Auth::user()->password;
+        // dd(Hash::check($request->old,$userPassword));
         if(Hash::check($request->old,$userPassword)){
             if(!Hash::check($request->new,$userPassword)){
                 if ($request->new===$request->confirmation) {
-                    $obj_user = User::find($userId)->firstOrFail();
-                    $obj_user->password = Hash::make($request->new);
-                    $obj_user->save();
+                    $user = User::find($userId)->firstOrFail();
+                    $user->password = Hash::make($request->new);
+                    $user->where('id', '=', $userId)->update(['password' => $user->password]);
                     return redirect()->back()->with("sucMsg","Password changed successfully !");
                 }
                 else
                 {
-                    redirect()->back()->with("errMsg","Your new password is mismatch. Please try again.");   
+                    return redirect()->back()->with("errMsg","Your new password is mismatch. Please try again.");   
                 }
             } else {
                 return redirect()->back()->with("errMsg","New Password cannot be same as your current password. Please choose a different password.");

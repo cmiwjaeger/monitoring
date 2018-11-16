@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products=Product::where('value',NULL)->take(5)->get();
+        $products=Product::where('value',NULL)->paginate(2);
         return view('admin.index',compact('products'));
     }
 
@@ -39,7 +39,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = Product::create(request()->all());
-        return redirect('Product.product')->with('sucMsg', 'Information has been added');
+        return redirect()->route('product.index')->with('sucMsg', 'Information has been added');
     }
 
     /**
@@ -88,7 +88,7 @@ class ProductController extends Controller
         $product = Product::where('idproduct', $request->idproduct)->first();
         $product->value = $request->quality;
         $product->save();
-        return redirect()->route('product.index')->with('sucMsg', 'Value berhasil ditambahkan, data akan masuk reports!');
+        return redirect()->route('product.index')->with('sucMsg', 'Value berhasil ditambahkan, data telah masuk reports!');
     }
 
     /**

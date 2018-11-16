@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 
-<table class="table ml-auto mr-auto" style="width:80%;">
+<table class="table ml-auto mr-auto">
   <thead class="thead-dark text-center">
     <tr>
       <th scope="col">ID</th>
@@ -41,6 +41,9 @@
   @endforeach
   </tbody>
 </table>
+<div class="ml-auto">
+  {{$products->links()}}
+</div>
 <center>
   <a href="{{route('product.create')}}" class="btn btn-info">Add</a>
 </center>
