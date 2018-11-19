@@ -30,3 +30,4 @@ Route::patch('/Privileges/avatar/{id}','UserController@updateAvatar')->name('cha
 Route::get('/Privileges/avatar/{id}','UserController@avatar')->name('avatar')->middleware('auth');
 
 Route::get('/reports','ReportsController@index')->middleware('auth');
+Route::post('/posted','ReportsController@post')->name('post');

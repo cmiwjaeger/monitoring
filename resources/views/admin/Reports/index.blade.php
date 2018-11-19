@@ -5,17 +5,18 @@
 <form action="{{url('/reports')}}">
   <div class="input-group mb-2 w-25 ml-auto">
     <div class="input-group-prepend">
-      <label class="input-group-text" for="inputGroupSelect01">Filter</label>
+      <label class="input-group-text">Filter</label>
     </div>
-    <select class="custom-select" id="inputGroupSelect01">
+    <select class="custom-select" id="inputGroupSelect01" name="filter" onChange="document.getElementById('demo').innerHTML=Date()">
       <option selected>Choose...</option>
       <option value="no-filter">No-Filter</option>
       <option value="good">Good</option>
       <option value="reject">Reject</option>
     </select>
-  <button class="btn btn-danger" type="submit">Delete</button>
+  <button class="btn" type="submit" name="src">Search</button>
   </div>
 </form>
+
 
 <table class="table ml-auto mr-auto">
   <thead class="thead-dark text-center">
@@ -41,4 +42,10 @@
   @endforeach
   </tbody>
 </table>
+
+<form action="{{route('post')}}" method="post">
+  <input type="hidden" name="id" value="$products">
+  <button type="submit" class="btn btn-primary">Print Reports @csrf</button>
+</form>
+
 @endsection

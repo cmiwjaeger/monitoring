@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\product;
 use Illuminate\Http\Request;
+use PDF;
+
 
 class ReportsController extends Controller
 {
@@ -88,5 +90,13 @@ class ReportsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function post(request $request)
+    {
+        $reports= Product::all();
+        // $pdf = PDF::loadView('admin.reports.pdf', compact('reports'));
+        // return $pdf->download('invoice.pdf');
+        return view('admin.reports.pdf', compact('reports'));
     }
 }
