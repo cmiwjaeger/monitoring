@@ -7,16 +7,15 @@
     <div class="input-group-prepend">
       <label class="input-group-text">Filter</label>
     </div>
-    <select class="custom-select" id="inputGroupSelect01" name="filter" onChange="document.getElementById('demo').innerHTML=Date()">
+    <select class="custom-select" id="filter" name="filter">
       <option selected>Choose...</option>
       <option value="no-filter">No-Filter</option>
       <option value="good">Good</option>
       <option value="reject">Reject</option>
     </select>
-  <button class="btn" type="submit" name="src">Search</button>
+  <button style="display:none" type="submit" id="src">Search</button>
   </div>
 </form>
-
 
 <table class="table ml-auto mr-auto">
   <thead class="thead-dark text-center">
@@ -43,9 +42,17 @@
   </tbody>
 </table>
 
-<form action="{{route('post')}}" method="post">
-  <input type="hidden" name="id" value="$products">
-  <button type="submit" class="btn btn-primary">Print Reports @csrf</button>
+<form action="{{route('pdfrequest',$products->filter)}}" method="post">
+  <input type="hidden" name="filter" value="{{$products->filter}}">
+  <center><button type="submit" class="btn btn-primary">Print Reports @csrf</button></center>
 </form>
+
+<script>
+$(document).ready(function(){
+    $("#filter").change(function(){
+        $("#src").click();
+    });
+});
+</script>
 
 @endsection

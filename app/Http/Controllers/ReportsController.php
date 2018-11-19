@@ -17,16 +17,39 @@ class ReportsController extends Controller
     public function index(Request $request)
     {
         if($request->filter=="good"){
-            $products=Product::where('value','>=',70)->take(5)->get();
+            $products=Product::where('value','>=',70)->simplepaginate();
         }elseif($request->filter=="reject"){
-            $products=Product::where('value','<',70)->take(5)->get();
+            $products=Product::where('value','<',70)->simplepaginate();
         }else{
-            $products=Product::whereNotNull('value')->take(5)->get();
+            $products=Product::whereNotNull('value')->simplepaginate();
         }
+        $products->filter=$request->filter;
         return view('admin.reports.index',compact('products'));
     }
 
-    /**
+    public function PDFRequest(request $request)
+    {
+        $reports=$this->poke($request->filter);
+        $pdf = PDF::loadView('admin.reports.pdf', compact('reports'));
+        return $pdf->download('reports.pdf');
+        return view('admin.reports.pdf', compact('reports'));
+    }
+
+    public function poke($filter)
+    {
+        if($filter=="good"){
+            $filter=Product::where('value','>=',70)->simplepaginate();
+        }elseif($filter=="reject"){
+            $filter=Product::where('value','<',70)->simplepaginate();
+        }else{
+            $filter=Product::whereNotNull('value')->simplepaginate();
+        }
+        return $filter;
+    }
+
+    
+
+        /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -90,13 +113,5 @@ class ReportsController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function post(request $request)
-    {
-        $reports= Product::all();
-        // $pdf = PDF::loadView('admin.reports.pdf', compact('reports'));
-        // return $pdf->download('invoice.pdf');
-        return view('admin.reports.pdf', compact('reports'));
     }
 }

@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>Laporan Provinsi</title>
+        <title>Laporan</title>
         <body>
             <style type="text/css">
                 .tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;width: 100%; }
@@ -29,7 +29,7 @@
               @foreach ($reports as $data)
               <tr>
                 <td class="tg-ti5e" width="4%" style="text-align:center">{{$no++}}</td>
-                <td class="tg-rv4w" width="7%">{{$data->created_at }}</td>
+                <td class="tg-rv4w" width="10%">{{$data->created_at }}</td>
                 <td class="tg-rv4w" width="15%">{{$data->nameproduct}}</td>
                 <td class="tg-ti5e" width="15%">{{$data->namesupplier}}</td>
                 <td class="tg-ti5e" width="10%">{{$data->quantity}}</td>

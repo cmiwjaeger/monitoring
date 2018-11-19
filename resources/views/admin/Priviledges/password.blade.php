@@ -12,11 +12,11 @@
         </div>
         <div class="form-group">
             <label>New Password:</label>
-            <input type="text" name="new" value="" class="form-control">
+            <input type="password" name="new" value="" class="form-control">
         </div>
         <div class="form-group">
             <label>Confirmation Password:</label>
-            <input type="text" name="confirmation" value="" class="form-control">
+            <input type="password" name="confirmation" value="" class="form-control">
         </div>
         <center>
             <input type="submit" value="Submit" class="btn btn-warning">
